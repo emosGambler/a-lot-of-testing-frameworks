@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
-    "test": "casperjs e2e/sample-test.js",
+    "test": "casperjs test e2e/sample-test.js",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
