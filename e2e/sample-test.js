@@ -1,18 +1,20 @@
 var helper = require('./../utils/helper');
 
 var NUMBER_OF_TESTS = 2;
+var GOOGLE_URL = 'https://www.google.pl/';
+var TITLE = 'Google';
 
-casper.test.begin('Testing CasperJS page', NUMBER_OF_TESTS, function suite(test) {
-    casper.start('http://casperjs.org/', function() {
-        var randomName = 'screenshots/screenshot'.concat(helper.generateTimestamp()).concat('.png');
-        helper.captureScreenshot(casper, randomName);
-        test.assertTitle('CasperJS, a navigation scripting and testing utility for PhantomJS and SlimerJS', 'CasperJS title is wrong.');
+casper.test.begin('Google Search page', NUMBER_OF_TESTS, function suite(test) {
+    casper.start(GOOGLE_URL, function() {
+        var TEST_DESCRIPTION = 'should title be correct.';
+        helper.captureScreenshot(casper, TEST_DESCRIPTION);
+        test.assertTitle(TITLE, TEST_DESCRIPTION);
     });
     
-    casper.thenOpen('http://phantomjs.org', function() {
-        var randomName = 'screenshots/screenshot'.concat(helper.generateTimestamp()).concat('.png');
-        helper.captureScreenshot(casper, randomName);
-        test.assertTitle('PhantomJS | PhantomJS', 'PhantomJS title is wrong.');
+    casper.then(function() {
+        var TEST_DESCRIPTION = 'should search be present.';
+        helper.captureScreenshot(casper, TEST_DESCRIPTION);
+        test.assertExists('form[action="/search"]', TEST_DESCRIPTION);
     });
     
     casper.run(function() {

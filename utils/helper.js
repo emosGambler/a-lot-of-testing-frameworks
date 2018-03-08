@@ -1,5 +1,6 @@
 module.exports = {
-    captureScreenshot: function(casper, path) {
+    captureScreenshot: function(casper, testDescription) {
+        var path = 'screenshots/screenshot-'.concat(testDescription.replace(/ /g, '-')).concat('.png');
         casper.capture(path);
     },
     generateTimestamp: function() {
