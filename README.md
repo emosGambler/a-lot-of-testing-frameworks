@@ -4,4 +4,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # Before you begin!
 
-When switching between branches and executing tests, some temporarly files can be created. So before you begin running tests, please use `npm run clean` command to remove all the tmp files.
+When switching between branches and executing tests, some temporarly files can be created. So before you begin running tests, please use `npm run clean` command to remove all the tmp files (requires git installed).
