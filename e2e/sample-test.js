@@ -24,9 +24,9 @@ casper.test.begin('Google Search page', NUMBER_OF_TESTS, function suite(test) {
         this.test.comment('should query be searched.');
         this.fill('form[action="/search"]', {
             'q': 'casperjs'
-        }, true);
+        }, false);
         helper.captureScreenshot(casper, 'Query is searched.');
-        test.assertExists('h3 > a');
+        test.assertVisible('form[action="/search"]');
     });
     
     casper.run(function() {
