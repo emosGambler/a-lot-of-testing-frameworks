@@ -1,20 +1,32 @@
 var helper = require('./../utils/helper');
 
-var NUMBER_OF_TESTS = 2;
+var NUMBER_OF_TESTS = 4;
 var GOOGLE_URL = 'https://www.google.pl/';
 var TITLE = 'Google';
 
 casper.test.begin('Google Search page', NUMBER_OF_TESTS, function suite(test) {
     casper.start(GOOGLE_URL, function() {
-        var TEST_DESCRIPTION = 'should title be correct.';
-        helper.captureScreenshot(casper, TEST_DESCRIPTION);
-        test.assertTitle(TITLE, TEST_DESCRIPTION);
+        this.test.comment('should title be correct.');
+        test.assertTitle(TITLE, 'Title is correct.');
     });
     
     casper.then(function() {
-        var TEST_DESCRIPTION = 'should search be present.';
-        helper.captureScreenshot(casper, TEST_DESCRIPTION);
-        test.assertExists('form[action="/search"]', TEST_DESCRIPTION);
+        this.test.comment('should url be correct.');
+        test.assertUrlMatch('https://www.google.pl/');
+    });
+
+    casper.then(function() {
+        this.test.comment('should search be present.');
+        test.assertVisible('form[action="/search"]');
+    });
+    
+    casper.then(function() {
+        this.test.comment('should query be searched.');
+        this.fill('form[action="/search"]', {
+            'q': 'casperjs'
+        }, true);
+        helper.captureScreenshot(casper, 'Query is searched.');
+        test.assertExists('h3 > a');
     });
     
     casper.run(function() {
